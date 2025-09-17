@@ -66,7 +66,10 @@ class CustomCard extends StatelessWidget {
                             // the liking button
                             IconButton(
                               onPressed: () {},
-                              icon: const Icon(Icons.heart_broken),
+                              icon: Image.asset(
+                                'assets/images/filled_heart.png',
+                                height: screenHeight * 0.024,
+                              ),
                             ),
                           ],
                         ),
@@ -112,6 +115,7 @@ class CustomCard extends StatelessWidget {
                     children: [
                       // bottom FUNDED text
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const CustomBWhiteText(text: '500'),
                           SizedBox(height: screenHeight * 0.02),
@@ -123,6 +127,7 @@ class CustomCard extends StatelessWidget {
 
                       //bottom GOALS text
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.,
                         children: [
                           const CustomBWhiteText(text: '5000'),
                           SizedBox(height: screenHeight * 0.02),
@@ -134,6 +139,7 @@ class CustomCard extends StatelessWidget {
 
                       // bottom ENDS IN text
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const CustomBWhiteText(text: '36'),
                           SizedBox(height: screenHeight * 0.02),

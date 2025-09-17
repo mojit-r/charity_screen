@@ -127,7 +127,7 @@ class CustomCard extends StatelessWidget {
 
                       //bottom GOALS text
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const CustomBWhiteText(text: '5000'),
                           SizedBox(height: screenHeight * 0.02),

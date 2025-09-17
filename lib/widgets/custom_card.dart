@@ -20,7 +20,7 @@ class CustomCard extends StatelessWidget {
             // background image
             Image.network(
               'https://images.pexels.com/photos/8892/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-              height: screenHeight * 0.28,
+              height: screenHeight * 0.27,
               width: screenWidth,
               fit: BoxFit.cover,
             ),
@@ -36,11 +36,13 @@ class CustomCard extends StatelessWidget {
 
         Positioned(
           left: screenWidth * 0.03,
-          top: screenHeight * 0.219,
+          top: screenHeight * 0.209,
           child: Column(
             children: [
+              // first row - white liking card & circular button
               Row(
                 children: [
+                  // Liking Card
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -75,12 +77,15 @@ class CustomCard extends StatelessWidget {
                         ),
                         SizedBox(height: screenWidth * 0.01),
                         // liking card discription text
-                        const Text(
-                          'heha i am just tasting my application for broader preferencers',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
+                        Padding(
+                          padding: EdgeInsets.only(right: screenWidth * 0.12),
+                          child: const Text(
+                            'heha i am just testin my application for broader preferences',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                            ),
                           ),
                         ),
                       ],
@@ -110,39 +115,59 @@ class CustomCard extends StatelessWidget {
               // second row - bottom info and action
               Row(
                 children: [
-                  // bottom left side texts
-                  Row(
+                  // bottom left status
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // bottom FUNDED text
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      // status values
+                      Row(
                         children: [
+                          // rupee image
+                          Image.asset(
+                            'assets/images/rupee-indian.png',
+                            height: screenHeight * 0.025,
+                            color: Colors.white,
+                          ),
+
+                          // FUNDED value
                           const CustomBWhiteText(text: '500'),
-                          SizedBox(height: screenHeight * 0.02),
-                          const CustomWhiteText(text: 'FUNDED'),
-                        ],
-                      ),
 
-                      SizedBox(width: screenWidth * 0.1),
+                          SizedBox(width: screenWidth * 0.11),
 
-                      //bottom GOALS text
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                          // rupee image
+                          Image.asset(
+                            'assets/images/rupee-indian.png',
+                            height: screenHeight * 0.025,
+                            color: Colors.white,
+                          ),
+
+                          // GOALS value
                           const CustomBWhiteText(text: '5000'),
-                          SizedBox(height: screenHeight * 0.02),
-                          const CustomWhiteText(text: 'GOALS'),
+
+                          SizedBox(width: screenWidth * 0.11),
+
+                          // ENDS IN value
+                          const CustomBWhiteText(text: '36'),
                         ],
                       ),
 
-                      SizedBox(width: screenWidth * 0.1),
+                      // space between Status Values and Status Keys
+                      SizedBox(height: screenHeight * 0.02),
 
-                      // bottom ENDS IN text
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      // Status Keys
+                      Row(
                         children: [
-                          const CustomBWhiteText(text: '36'),
-                          SizedBox(height: screenHeight * 0.02),
+                          // FUNDED Key
+                          const CustomWhiteText(text: 'FUNDED'),
+
+                          SizedBox(width: screenWidth * 0.1),
+
+                          // GOALS Key
+                          const CustomWhiteText(text: 'GOALS'),
+
+                          SizedBox(width: screenWidth * 0.1),
+
+                          // ENDS IN Key
                           const CustomWhiteText(text: 'ENDS IN'),
                         ],
                       ),

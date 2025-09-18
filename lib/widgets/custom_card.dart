@@ -33,7 +33,9 @@ class _CustomCardState extends State<CustomCard> {
               height: screenHeight * 0.27,
               width: screenWidth,
               child: PageView.builder(
+                itemCount: imgs.length,
                 scrollDirection: Axis.horizontal,
+                // images
                 itemBuilder: (context, index) => Image.network(
                   imgs[index],
                   // height: screenHeight * 0.27,

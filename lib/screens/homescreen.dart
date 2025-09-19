@@ -1,5 +1,8 @@
-import 'package:charity_screen/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/like_provider.dart';
+import '../widgets/custom_card.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -25,7 +28,10 @@ class Homescreen extends StatelessWidget {
       // Body of the screen
       body: ListView.builder(
         itemCount: 10,
-        itemBuilder: (context, index) => const CustomCard(),
+        itemBuilder: (context, index) => ChangeNotifierProvider(
+          create: (_) => LikeProvider(),
+          child: const CustomCard(),
+        ),
       ),
     );
   }

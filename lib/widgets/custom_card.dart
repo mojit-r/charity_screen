@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/like_provider.dart';
 import '../shared/custom_bwhite_text.dart';
 import '../shared/custom_white_text.dart';
 
@@ -35,7 +37,7 @@ class _CustomCardState extends State<CustomCard> {
               child: PageView.builder(
                 itemCount: imgs.length,
                 scrollDirection: Axis.horizontal,
-                // images
+                // image to slide
                 itemBuilder: (context, index) => Image.network(
                   imgs[index],
                   // height: screenHeight * 0.27,
@@ -87,9 +89,13 @@ class _CustomCardState extends State<CustomCard> {
                             const Spacer(),
                             // the liking button
                             IconButton(
-                              onPressed: () {},
+                              onPressed: context
+                                  .read<LikeProvider>()
+                                  .toggleLike,
                               icon: Image.asset(
-                                'assets/images/filled_heart.png',
+                                context.watch<LikeProvider>().isLiked
+                                    ? 'assets/images/filled_heart.png'
+                                    : 'assets/images/empty_heart.png',
                                 height: screenHeight * 0.024,
                               ),
                             ),
@@ -202,10 +208,8 @@ class _CustomCardState extends State<CustomCard> {
                     style: ElevatedButton.styleFrom(
                       foregroundColor: const Color.fromARGB(255, 57, 131, 163),
                       backgroundColor: Colors.white,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadiusGeometry.all(
-                          Radius.circular(12),
-                        ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                     child: const Text('PLEDGE'),

@@ -88,15 +88,17 @@ class _CustomCardState extends State<CustomCard> {
                             ),
                             const Spacer(),
                             // the liking button
-                            IconButton(
-                              onPressed: context
-                                  .read<LikeProvider>()
-                                  .toggleLike,
-                              icon: Image.asset(
-                                context.watch<LikeProvider>().isLiked
-                                    ? 'assets/images/filled_heart.png'
-                                    : 'assets/images/empty_heart.png',
-                                height: screenHeight * 0.024,
+                            SizedBox(
+                              height: screenHeight * 0.042,
+                              child: IconButton(
+                                onPressed: context
+                                    .read<LikeProvider>()
+                                    .toggleLike,
+                                icon: Image.asset(
+                                  context.watch<LikeProvider>().isLiked
+                                      ? 'assets/images/filled_heart.png'
+                                      : 'assets/images/empty_heart.png',
+                                ),
                               ),
                             ),
                           ],

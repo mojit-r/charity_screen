@@ -94,10 +94,13 @@ class _CustomCardState extends State<CustomCard> {
                                 onPressed: context
                                     .read<LikeProvider>()
                                     .toggleLike,
-                                icon: Image.asset(
-                                  context.watch<LikeProvider>().isLiked
-                                      ? 'assets/images/filled_heart.png'
-                                      : 'assets/images/empty_heart.png',
+                                icon: Consumer<LikeProvider>(
+                                  builder: (context, value, child) =>
+                                      Image.asset(
+                                        value.isLiked
+                                            ? 'assets/images/filled_heart.png'
+                                            : 'assets/images/empty_heart.png',
+                                      ),
                                 ),
                               ),
                             ),

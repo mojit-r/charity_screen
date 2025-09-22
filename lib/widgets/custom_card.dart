@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/like_provider.dart';
+import '../services/image_services.dart';
 import '../shared/custom_bwhite_text.dart';
 import '../shared/custom_white_text.dart';
 
@@ -13,11 +16,27 @@ class CustomCard extends StatefulWidget {
 }
 
 class _CustomCardState extends State<CustomCard> {
-  List<String> imgs = [
-    'https://plus.unsplash.com/premium_photo-1682092585257-58d1c813d9b4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cG9vciUyMGNoaWxkfGVufDB8fDB8fHww',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQK4lYGtueo0rSDE_4OrlJYnBXen0600uNyzrhDRq8xGW0-PSnqGOYUf2tsfvdYnN1DrY&usqp=CAU',
-    'https://images.pexels.com/photos/8892/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-  ];
+  List<String> imgs = [];
+  bool isloading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    loadImages();
+  }
+
+  Future<void> loadImages() async {
+    try {
+      imgs = await ImageServices().fetchImages('charity');
+      log(imgs.toString());
+    } catch (e) {
+      imgs = [];
+    } finally {
+      setState(() {
+        isloading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

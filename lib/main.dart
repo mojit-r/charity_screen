@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../screens/homescreen.dart';
 
-void main() {
+void main() async{
+    // Load environment variables before runApp
+  await dotenv.load(fileName: '.env');
   runApp(const MainApp());
 }
 

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +7,8 @@ import '../shared/custom_bwhite_text.dart';
 import '../shared/custom_white_text.dart';
 
 class CustomCard extends StatefulWidget {
-  const CustomCard({super.key});
+  final int cardNumber;
+  const CustomCard({super.key, required this.cardNumber});
 
   @override
   State<CustomCard> createState() => _CustomCardState();
@@ -28,7 +27,6 @@ class _CustomCardState extends State<CustomCard> {
   Future<void> loadImages() async {
     try {
       imgs = await ImageServices().fetchImages('charity');
-      log(imgs.toString());
     } catch (e) {
       imgs = [];
     } finally {
@@ -50,23 +48,43 @@ class _CustomCardState extends State<CustomCard> {
         Column(
           children: [
             // background image slider
-            SizedBox(
-              height: screenHeight * 0.27,
-              width: screenWidth,
-              child: PageView.builder(
-                itemCount: imgs.length,
-                scrollDirection: Axis.horizontal,
-                // image to slide
-                itemBuilder: (context, index) => Image.network(
-                  imgs[index],
-                  // height: screenHeight * 0.27,
-                  // width: screenWidth,
-                  fit: BoxFit.cover,
+            ColoredBox(
+              color: const Color.fromARGB(255, 95, 148, 170),
+              child: SizedBox(
+                height: screenHeight * 0.27,
+                width: screenWidth,
+                child: PageView.builder(
+                  itemCount: (imgs.length - (widget.cardNumber * 3)).clamp(
+                    0,
+                    3,
+                  ),
+                  scrollDirection: Axis.horizontal,
+                  // image to slide
+                  itemBuilder: (context, index) => Image.network(
+                    imgs[index + (widget.cardNumber * 3)],
+                    fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return const ColoredBox(
+                        color: Color.fromARGB(255, 95, 148, 170),
+                        child: Center(child: CircularProgressIndicator()),
+                      );
+                    },
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Center(
+                        child: Icon(
+                          Icons.broken_image,
+                          size: 40,
+                          color: Colors.grey,
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
 
-            // container below imgae
+            // container below the imgae
             Container(
               color: const Color.fromARGB(255, 57, 131, 163),
               height: screenHeight * 0.18,

@@ -30,7 +30,7 @@ class Homescreen extends StatelessWidget {
         itemCount: 10,
         itemBuilder: (context, index) => ChangeNotifierProvider(
           create: (_) => LikeProvider(),
-          child: const CustomCard(),
+          child: CustomCard(cardNumber: index,),
         ),
       ),
     );
